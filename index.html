@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LandFinder — Alagana</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="root">
+    <aside class="left">
+      <div class="brand">
+        <div class="logo">🏡</div>
+        <div>
+          <h1>LandFinder</h1>
+          <p class="muted">Direct owner listings — avoid brokers</p>
+        </div>
+      </div>
+
+      <div class="search">
+        <input id="qPlace" placeholder="Search area (e.g., Perundurai, Erode)" />
+        <div class="filters">
+          <input id="minPrice" placeholder="Min ₹" type="number" />
+          <input id="maxPrice" placeholder="Max ₹" type="number" />
+          <input id="minSqft" placeholder="Min sqft" type="number" />
+          <input id="maxSqft" placeholder="Max sqft" type="number" />
+        </div>
+        <div class="controls">
+          <select id="sortBy">
+            <option value="relevance">Relevance</option>
+            <option value="price_asc">Price: Low → High</option>
+            <option value="price_desc">Price: High → Low</option>
+            <option value="psf_asc">Price/sqft: Low → High</option>
+            <option value="psf_desc">Price/sqft: High → Low</option>
+          </select>
+          <div class="btnRow">
+            <button id="btnSearch" class="btn primary">Search</button>
+            <button id="btnReset" class="btn outline">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-header">
+        <h3>Listings</h3>
+        <button id="addToggle" class="btn small">+ Add</button>
+      </div>
+
+      <div id="results" class="list"></div>
+
+      <div class="footer">
+        <small>Tip: Click a card or marker → “Sale is here!” popup will open with owner contact.</small>
+        <div class="credits">Made lovely ✨</div>
+      </div>
+    </aside>
+
+    <main class="right">
+      <div id="map" class="map"></div>
+
+      <!-- Add form drawer -->
+      <div id="addDrawer" class="drawer hidden">
+        <h3>Add New Land</h3>
+        <form id="addForm" class="form">
+          <input id="fTitle" placeholder="Title (e.g., Corner plot)" required />
+          <input id="fAddress" placeholder="Address / Area (auto geocode)" required />
+          <div class="two">
+            <input id="fPrice" type="number" placeholder="Price (₹)" required />
+            <input id="fSqft" type="number" placeholder="Area (sqft)" required />
+          </div>
+          <div class="two">
+            <input id="fOwner" placeholder="Owner name" required />
+            <input id="fPhone" placeholder="Phone +9198xxxx" required />
+          </div>
+          <textarea id="fDesc" placeholder="Short description (optional)"></textarea>
+          <div class="btnRow">
+            <button type="submit" class="btn primary">Add</button>
+            <button id="cancelAdd" type="button" class="btn outline">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button id="closeModal" class="close">✕</button>
+      <h2 id="modalTitle">Sale is here!</h2>
+      <h4 id="modalSubtitle" class="muted"></h4>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="modal-actions">
+        <button id="saveFav" class="btn outline">Save</button>
+        <button id="contactOwner" class="btn primary">Call Owner</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
